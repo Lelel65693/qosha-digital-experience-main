@@ -1,0 +1,129 @@
+{
+  "nav": {
+    "home": "Home",
+    "menu": "Menu",
+    "gallery": "Gallery",
+    "reservation": "Reservations",
+    "contact": "Contact",
+    "admin": "Admin"
+  },
+  "hero": {
+    "title": "Qoşa Qala",
+    "subtitle": "Mardakan, Baku",
+    "tagline": "Caucasian hospitality, European cuisine, unforgettable moments",
+    "ctaReserve": "Reserve a Table",
+    "ctaMenu": "View Menu",
+    "rating": "Rating",
+    "hours": "10:00 AM – 1:00 AM",
+    "music": "Live Music"
+  },
+  "about": {
+    "eyebrow": "About Us",
+    "title": "A place in the heart of the Caucasus",
+    "body": "Only here will you find true Caucasian hospitality. Exquisite dishes from European, national, and world cuisines await you. We also offer private halls for banquets, weddings, and special events.",
+    "stats": {
+      "guests": "Annual guests",
+      "dishes": "Dishes on menu",
+      "years": "Years of experience"
+    }
+  },
+  "features": {
+    "title": "What awaits you",
+    "items": {
+      "music": { "title": "Live Music", "desc": "Performers every evening" },
+      "parking": { "title": "Free Parking", "desc": "Spacious open area" },
+      "bbq": { "title": "BBQ & Grill", "desc": "Over open flame" },
+      "breakfast": { "title": "Breakfast", "desc": "10:00 – 12:30" },
+      "wine": { "title": "Wine List", "desc": "Local and global selections" },
+      "wifi": { "title": "Wi-Fi", "desc": "Free high-speed" },
+      "terrace": { "title": "Summer Terrace", "desc": "Caspian view" },
+      "banquet": { "title": "Banquet Hall", "desc": "Weddings & events" },
+      "kids": { "title": "Kids Playground", "desc": "Safe play zone" }
+    }
+  },
+  "menu": {
+    "title": "Digital Menu",
+    "subtitle": "A choice for every taste",
+    "search": "Search dishes...",
+    "all": "All",
+    "categories": {
+      "cold-appetizers": "Cold Appetizers",
+      "hot-appetizers": "Hot Appetizers",
+      "salads": "Salads",
+      "main-dishes": "Main Dishes",
+      "bbq": "BBQ & Grill",
+      "seafood": "Seafood",
+      "desserts": "Desserts",
+      "drinks": "Drinks",
+      "alcohol": "Alcohol"
+    },
+    "badges": {
+      "popular": "Popular",
+      "vegan": "Vegan",
+      "spicy": "Spicy",
+      "new": "New"
+    },
+    "empty": "No dishes in this category"
+  },
+  "reviews": {
+    "title": "What our guests say",
+    "overall": "Overall rating",
+    "count": "{{count}} reviews"
+  },
+  "gallery": {
+    "title": "Gallery",
+    "subtitle": "Discover our atmosphere"
+  },
+  "reservation": {
+    "title": "Table Reservation",
+    "subtitle": "We are waiting for you",
+    "name": "Full Name",
+    "phone": "Phone",
+    "date": "Date",
+    "time": "Time",
+    "guests": "Guests",
+    "note": "Note (optional)",
+    "submit": "Reserve",
+    "submitting": "Submitting...",
+    "success": "Reservation received! We will contact you shortly.",
+    "error": "Something went wrong. Please try again."
+  },
+  "contact": {
+    "title": "Contact",
+    "address": "Buzovna, Baglar Massiv 67, Mardakan, Baku",
+    "phone": "+994 50 790 88 88",
+    "email": "qoshaqalam1@gmail.com",
+    "hours": "Daily: 10:00 AM – 1:00 AM"
+  },
+  "footer": {
+    "tagline": "Caucasian hospitality, Caspian view",
+    "qrMenu": "QR Menu",
+    "rights": "All rights reserved"
+  },
+  "qr": {
+    "tableLabel": "Table",
+    "call": "Call",
+    "tableNotFound": "Table not found",
+    "service": "Call Service",
+    "callWaiter": "Call Waiter",
+    "requestBill": "Request Bill",
+    "cancel": "Cancel",
+    "waiterCalled": "Waiter called! They will arrive shortly.",
+    "billRequested": "Bill requested! Preparing."
+  },
+  "admin": {
+    "login": "Admin Login",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "logout": "Log out",
+    "dashboard": "Dashboard",
+    "menuMgmt": "Menu",
+    "reviewsMgmt": "Reviews",
+    "tablesMgmt": "Tables / QR",
+    "reservationsMgmt": "Reservations",
+    "galleryMgmt": "Gallery",
+    "notAdmin": "You do not have admin permissions"
+  }
+}

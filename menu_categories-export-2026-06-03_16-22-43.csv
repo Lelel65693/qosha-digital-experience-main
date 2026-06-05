@@ -1,0 +1,16 @@
+id;slug;name_az;name_ru;name_en;icon;sort_order;is_active;created_at
+85212989-7920-4f02-a76e-62b4a01898d0;breakfast;Səhər Yeməyi;Завтрак;Breakfast;🌅;0;true;2026-06-03 11:32:40.324996+00
+d529eff7-c1bc-4550-aca1-2b24f42ee5fc;cold-app;Soyuq Qəlyanaltılar;Холодные закуски;Cold Appetizers;🥗;1;true;2026-06-03 11:32:40.324996+00
+74c5fc7e-31a6-4f78-9511-114848374f79;salads;Salatlar;Салаты;Salads;🥙;2;true;2026-06-03 11:32:40.324996+00
+7e9ea21c-9302-4340-be09-91d698277168;hot-app;İsti Qəlyanaltılar;Горячие закуски;Hot Appetizers;🔥;3;true;2026-06-03 11:32:40.324996+00
+d6b3e1e1-21a7-485b-b109-e107012b25b4;soups;Şorbalar;Супы;Soups;🍲;4;true;2026-06-03 11:32:40.324996+00
+d3a23871-be5b-4dff-ac83-2440ff0b1fd0;mains;Əsas Xörəklər;Основные блюда;Main Dishes;🍖;5;true;2026-06-03 11:32:40.324996+00
+121f55e0-67ee-4f27-b2be-482dd4047a67;steaks;Steyklər;Стейки;Steaks;🥩;6;true;2026-06-03 11:32:40.324996+00
+d298686f-f91a-4039-aad7-7eaa930a2c55;bbq;Barbekü & Mangal;Барбекю & Мангал;BBQ & Grill;🔥;7;true;2026-06-03 11:32:40.324996+00
+8da830dc-c350-41f6-8a42-d470a8254328;seafood;Dəniz Məhsulları;Морепродукты;Seafood;🐟;8;true;2026-06-03 11:32:40.324996+00
+7e691395-885a-4082-befc-db0257f09a6a;pasta;Xəmir / İtalyan Pastaları;Паста / Тесто;Pasta / Dough;🍝;9;true;2026-06-03 11:32:40.324996+00
+16ca8ff8-3573-4ed8-8b35-b620faf23c55;sides;Qarnir;Гарниры;Side Dishes;🍟;10;true;2026-06-03 11:32:40.324996+00
+42a1eb82-c021-4e63-a0ee-298921aabec0;desserts;Şirniyyatlar;Десерты;Desserts;🍰;11;true;2026-06-03 11:32:40.324996+00
+869b6cfa-4e49-414a-91b7-83d01bfdcd55;beverages;İçkilər;Напитки;Beverages;🥤;12;true;2026-06-03 11:32:40.324996+00
+3ab0cd98-7489-405e-99df-2b168434573f;alcohol;Sərxoşedici İçkilər;Алкогольные напитки;Alcoholic Drinks;🍷;13;true;2026-06-03 11:32:40.324996+00
+2e910324-54b9-44e1-9f62-bb3bb90d2739;kids;Uşaq Menyusu;Детское меню;Kids Menu;👶;14;true;2026-06-03 11:32:40.324996+00

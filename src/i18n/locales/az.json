@@ -1,0 +1,129 @@
+{
+  "nav": {
+    "home": "Ana Səhifə",
+    "menu": "Menyu",
+    "gallery": "Qalereya",
+    "reservation": "Rezervasiya",
+    "contact": "Əlaqə",
+    "admin": "Admin"
+  },
+  "hero": {
+    "title": "Qoşa Qala",
+    "subtitle": "Mərdəkan, Bakı",
+    "tagline": "Qafqaz qonaqpərvərliyi, Avropa mətbəxi, unutulmaz anlar",
+    "ctaReserve": "Masa Sifariş Et",
+    "ctaMenu": "Menyuya Bax",
+    "rating": "Reytinq",
+    "hours": "10:00 – 01:00",
+    "music": "Canlı Musiqi"
+  },
+  "about": {
+    "eyebrow": "Haqqımızda",
+    "title": "Qafqazın qəlbində bir məkan",
+    "body": "Yalnız burada Qafqaz qonaqpərvərliyini tapa bilərsiniz. Avropa, milli və dünya mətbəxindən əsrarəngiz dadlı yeməklər sizi gözləyir. Banket, toy, şəxsi tədbirlər üçün xüsusi zallarımız var.",
+    "stats": {
+      "guests": "İllik qonaq",
+      "dishes": "Yemək növü",
+      "years": "İl təcrübə"
+    }
+  },
+  "features": {
+    "title": "Bizimlə nə tapacaqsınız",
+    "items": {
+      "music": { "title": "Canlı Musiqi", "desc": "Hər axşam sənətçilər" },
+      "parking": { "title": "Pulsuz Parkinq", "desc": "Geniş açıq sahə" },
+      "bbq": { "title": "Mangal & Barbekü", "desc": "Açıq alov üzərində" },
+      "breakfast": { "title": "Səhər Yeməyi", "desc": "10:00 – 12:30" },
+      "wine": { "title": "Şərab Kartası", "desc": "Yerli və dünya seçimləri" },
+      "wifi": { "title": "Wi-Fi", "desc": "Yüksək sürətli pulsuz" },
+      "terrace": { "title": "Yay Terrası", "desc": "Dəniz mənzərəli" },
+      "banquet": { "title": "Banket Zalı", "desc": "Toy və tədbirlər" },
+      "kids": { "title": "Uşaq Meydançası", "desc": "Təhlükəsiz oyun zonası" }
+    }
+  },
+  "menu": {
+    "title": "Dijital Menyu",
+    "subtitle": "Hər zövqə uyğun seçim",
+    "search": "Yemək axtar...",
+    "all": "Hamısı",
+    "categories": {
+      "cold-appetizers": "Soyuq Qəlyanaltılar",
+      "hot-appetizers": "İsti Qəlyanaltılar",
+      "salads": "Salatlar",
+      "main-dishes": "Əsas Xörəklər",
+      "bbq": "Barbekü & Mangal",
+      "seafood": "Dəniz Məhsulları",
+      "desserts": "Şirniyyatlar",
+      "drinks": "İçkilər",
+      "alcohol": "Sərxoşedici İçkilər"
+    },
+    "badges": {
+      "popular": "Populyar",
+      "vegan": "Vegan",
+      "spicy": "Acılı",
+      "new": "Yeni"
+    },
+    "empty": "Bu kateqoriyada yemək tapılmadı"
+  },
+  "reviews": {
+    "title": "Qonaqlarımız nə deyir",
+    "overall": "Ümumi reytinq",
+    "count": "{{count}} rəy"
+  },
+  "gallery": {
+    "title": "Qalereya",
+    "subtitle": "Atmosferimizi kəşf edin"
+  },
+  "reservation": {
+    "title": "Masa Sifarişi",
+    "subtitle": "Sizi gözləyirik",
+    "name": "Ad Soyad",
+    "phone": "Telefon",
+    "date": "Tarix",
+    "time": "Vaxt",
+    "guests": "Qonaq sayı",
+    "note": "Qeyd (istəyə bağlı)",
+    "submit": "Sifariş Et",
+    "submitting": "Göndərilir...",
+    "success": "Sifarişiniz qəbul edildi! Sizinlə tezliklə əlaqə saxlayacağıq.",
+    "error": "Xəta baş verdi. Zəhmət olmasa yenidən cəhd edin."
+  },
+  "contact": {
+    "title": "Əlaqə",
+    "address": "Buzovna, Bağlar Massivi 67, Mərdəkan, Bakı",
+    "phone": "+994 50 790 88 88",
+    "email": "qoshaqalam1@gmail.com",
+    "hours": "Hər gün: 10:00 – 01:00"
+  },
+  "footer": {
+    "tagline": "Qafqaz qonaqpərvərliyi, Xəzər mənzərəsi",
+    "qrMenu": "QR Menyu",
+    "rights": "Bütün hüquqlar qorunur"
+  },
+  "qr": {
+    "tableLabel": "Masa",
+    "call": "Zəng et",
+    "tableNotFound": "Masa tapılmadı",
+    "service": "Xidmət Çağır",
+    "callWaiter": "Ofisiant çağır",
+    "requestBill": "Hesabı istə",
+    "cancel": "Ləğv et",
+    "waiterCalled": "Ofisiant çağırıldı! Tezliklə yaxınlaşacaq.",
+    "billRequested": "Hesab tələb olundu! Hazırlanır."
+  },
+  "admin": {
+    "login": "Admin Girişi",
+    "email": "E-poçt",
+    "password": "Şifrə",
+    "signIn": "Daxil ol",
+    "signUp": "Qeydiyyat",
+    "logout": "Çıxış",
+    "dashboard": "İdarə Paneli",
+    "menuMgmt": "Menyu",
+    "reviewsMgmt": "Rəylər",
+    "tablesMgmt": "Masalar / QR",
+    "reservationsMgmt": "Rezervasiyalar",
+    "galleryMgmt": "Qalereya",
+    "notAdmin": "Sizin admin icazəniz yoxdur"
+  }
+}
