@@ -1,0 +1,1 @@
+import{j as r}from"./index-CZlGgcxE.js";const o=({error:e})=>r.jsx("div",{className:"p-8 text-destructive bg-destructive/10 border border-destructive/20 rounded-lg m-4",children:e.message});export{o as errorComponent};

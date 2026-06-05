@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useSuspenseQuery, queryOptions, useQueryClient } from "@tanstack/react-query";
 import { useState, useMemo, useEffect } from "react";
-import {
+import { 
   Settings, Save, HelpCircle, SlidersHorizontal,
   FileImage, FileText, Copy
 } from "lucide-react";
@@ -39,6 +39,21 @@ const menuQuery = queryOptions({
   queryFn: () => getMenuItems(),
 });
 
+export const Route = createFileRoute("/admin/tables")({
+  loader: async ({ context }) => {
+    await Promise.all([
+      context.queryClient.ensureQueryData(qrSettingsQuery),
+      context.queryClient.ensureQueryData(menuQuery),
+    ]);
+  },
+  component: TablesAdmin,
+  errorComponent: ({ error }) => (
+    <div className="p-8 text-destructive bg-destructive/10 border border-destructive/20 rounded-lg m-4">
+      {error.message}
+    </div>
+  ),
+});
+
 function timeAgo(dateString: string) {
   const diff = Date.now() - new Date(dateString).getTime();
   const minutes = Math.floor(diff / 60000);
@@ -56,7 +71,7 @@ function TablesAdmin() {
 
   // State
   const [settingsOpen, setSettingsOpen] = useState(false);
-
+  
   // Settings values (temporary local state before save)
   const [fgColor, setFgColor] = useState(qrSettings.fg_color);
   const [bgColor, setBgColor] = useState(qrSettings.bg_color);
@@ -115,7 +130,7 @@ function TablesAdmin() {
   const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
+    
     setUploadingLogo(true);
     try {
       const ext = file.name.split(".").pop();
@@ -247,9 +262,9 @@ function TablesAdmin() {
             </span>
           </p>
         </div>
-
+        
         <div className="flex flex-wrap gap-2">
-          <button
+          <button 
             onClick={() => setSettingsOpen(!settingsOpen)}
             className="flex items-center gap-2 px-4 py-2 bg-[#111111] hover:bg-[#1A1A1A] border border-border/10 rounded-lg text-sm text-[#C9A84C]"
           >
@@ -266,15 +281,15 @@ function TablesAdmin() {
             <h3 className="font-display text-lg text-[#C9A84C] font-semibold flex items-center gap-2 border-b border-border/10 pb-2">
               <SlidersHorizontal className="h-4 w-4" /> Nizamlamalar
             </h3>
-
+            
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="text-xs text-[#9E9E9E]">QR Ön Rəngi</label>
                 <div className="flex gap-2 items-center mt-1">
-                  <input
-                    type="color"
-                    value={fgColor}
-                    onChange={(e) => setFgColor(e.target.value)}
+                  <input 
+                    type="color" 
+                    value={fgColor} 
+                    onChange={(e) => setFgColor(e.target.value)} 
                     className="h-8 w-8 rounded border border-border/20 cursor-pointer bg-transparent"
                   />
                   <span className="text-xs font-mono">{fgColor}</span>
@@ -283,10 +298,10 @@ function TablesAdmin() {
               <div>
                 <label className="text-xs text-[#9E9E9E]">QR Arxa Rəngi</label>
                 <div className="flex gap-2 items-center mt-1">
-                  <input
-                    type="color"
-                    value={bgColor}
-                    onChange={(e) => setBgColor(e.target.value)}
+                  <input 
+                    type="color" 
+                    value={bgColor} 
+                    onChange={(e) => setBgColor(e.target.value)} 
                     className="h-8 w-8 rounded border border-border/20 cursor-pointer bg-transparent"
                   />
                   <span className="text-xs font-mono">{bgColor}</span>
@@ -299,12 +314,12 @@ function TablesAdmin() {
                 <span>QR Ölçüsü</span>
                 <span>{qrSize}px</span>
               </label>
-              <input
-                type="range"
-                min="200"
-                max="600"
-                value={qrSize}
-                onChange={(e) => setQrSize(Number(e.target.value))}
+              <input 
+                type="range" 
+                min="200" 
+                max="600" 
+                value={qrSize} 
+                onChange={(e) => setQrSize(Number(e.target.value))} 
                 className="w-full h-1.5 bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-[#C9A84C]"
               />
             </div>
@@ -330,8 +345,8 @@ function TablesAdmin() {
                     type="button"
                     className="flex items-center gap-2 p-2 bg-neutral-900/55 hover:bg-neutral-900 border border-border/10 rounded-lg text-left text-xs transition"
                   >
-                    <div
-                      className="w-4 h-4 rounded border border-border/20 flex-shrink-0 flex"
+                    <div 
+                      className="w-4 h-4 rounded border border-border/20 flex-shrink-0 flex" 
                       style={{ backgroundColor: preset.bg }}
                     >
                       <div className="w-1.5 h-1.5 m-auto rounded-full" style={{ backgroundColor: preset.fg }}></div>
@@ -353,9 +368,9 @@ function TablesAdmin() {
                 <div className="text-sm font-medium">QR mərkəzində logo</div>
                 <div className="text-xs text-[#9E9E9E]">Overlay logo aktivləşdir</div>
               </div>
-              <input
-                type="checkbox"
-                checked={logoActive}
+              <input 
+                type="checkbox" 
+                checked={logoActive} 
                 onChange={(e) => setLogoActive(e.target.checked)}
                 className="w-9 h-5 bg-neutral-800 checked:bg-[#C9A84C] rounded-full appearance-none cursor-pointer relative after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-[#F5F0E8] after:rounded-full after:h-4 after:w-4 after:transition-all checked:after:translate-x-4 border border-border/10"
               />
@@ -365,16 +380,16 @@ function TablesAdmin() {
               <div className="p-3 bg-neutral-900 rounded-lg border border-border/10 space-y-2">
                 <label className="text-xs text-[#9E9E9E]">Logo Şəkli Yüklə (PNG)</label>
                 <div className="flex gap-2 items-center">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleLogoUpload}
-                    className="hidden"
+                  <input 
+                    type="file" 
+                    accept="image/*" 
+                    onChange={handleLogoUpload} 
+                    className="hidden" 
                     id="logo-upload"
                     disabled={uploadingLogo}
                   />
-                  <label
-                    htmlFor="logo-upload"
+                  <label 
+                    htmlFor="logo-upload" 
                     className="flex-1 text-center py-2 bg-[#1A1A1A] hover:bg-[#252525] border border-border/10 rounded-lg text-xs cursor-pointer text-[#C9A84C]"
                   >
                     {uploadingLogo ? "Yüklənir..." : "Fayl Seçin"}
@@ -412,10 +427,10 @@ function TablesAdmin() {
               <div className="flex gap-4 mt-2">
                 {(["L", "M", "Q", "H"] as const).map((level) => (
                   <label key={level} className="flex items-center gap-2 text-sm cursor-pointer">
-                    <input
-                      type="radio"
+                    <input 
+                      type="radio" 
                       name="ec_level"
-                      checked={errorCorrection === level}
+                      checked={errorCorrection === level} 
                       onChange={() => setErrorCorrection(level)}
                       className="accent-[#C9A84C]"
                     />
@@ -432,7 +447,7 @@ function TablesAdmin() {
                 Canlı Önizləmə (Demo)
               </h3>
               <div className="flex justify-center p-3 bg-white rounded-lg w-fit mx-auto border border-border/10">
-                <QRCodeCanvas
+                <QRCodeCanvas 
                   value="https://qosaqala.az/menu"
                   size={140}
                   level={errorCorrection}
@@ -451,13 +466,13 @@ function TablesAdmin() {
             </div>
 
             <div className="flex gap-2 justify-end mt-4">
-              <button
+              <button 
                 onClick={() => setSettingsOpen(false)}
                 className="px-4 py-2 border border-border/10 rounded-lg text-sm"
               >
                 Ləğv
               </button>
-              <button
+              <button 
                 onClick={handleSaveSettings}
                 disabled={isSavingSettings}
                 className="px-4 py-2 bg-gradient-gold text-primary-foreground font-semibold rounded-lg text-sm flex items-center gap-2"
@@ -521,28 +536,28 @@ function TablesAdmin() {
           </div>
 
           <div className="flex flex-wrap gap-2.5 justify-center lg:justify-start">
-            <button
+            <button 
               onClick={downloadPngLocally}
               className="flex items-center gap-2 px-4 py-2.5 bg-[#1A1A1A] hover:bg-[#252525] border border-border/10 rounded-xl text-xs text-[#C9A84C] font-semibold transition"
             >
               <FileImage className="h-4 w-4" />
               PNG Yüklə
             </button>
-            <button
+            <button 
               onClick={downloadSvgLocally}
               className="flex items-center gap-2 px-4 py-2.5 bg-[#1A1A1A] hover:bg-[#252525] border border-border/10 rounded-xl text-xs text-[#C9A84C] font-semibold transition"
             >
               <FileImage className="h-4 w-4" />
               SVG Yüklə
             </button>
-            <a
-              href="/api/tables/general/qr/pdf"
+            <a 
+              href="/api/tables/general/qr/pdf" 
               className="flex items-center gap-2 px-4 py-2.5 bg-[#1A1A1A] hover:bg-[#252525] border border-border/10 rounded-xl text-xs text-[#C9A84C] font-semibold text-center transition"
             >
               <FileText className="h-4 w-4" />
               PDF Poster (A4)
             </a>
-            <button
+            <button 
               onClick={() => {
                 navigator.clipboard.writeText("https://qosaqala.az/menu");
                 toast.success("Mətn kopyalandı ✓");
