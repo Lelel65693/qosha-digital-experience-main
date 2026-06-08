@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Star, Clock, Music } from "lucide-react";
 import { useRef, useState } from "react";
 import heroImg from "@/assets/hero-restaurant.jpg";
-import { getVideoSrc } from "@/lib/image-src";
 
 const HERO_VIDEO =
   "https://monyo.az/v4/uploads-video/pv_2384d6a4d34_profile.mp4?x=1683810091";
@@ -24,7 +23,7 @@ export function Hero() {
       <motion.div style={{ y: bgY }} className="absolute inset-0 -top-10 -bottom-10">
         {videoOk ? (
           <video
-            src={getVideoSrc(HERO_VIDEO)}
+            src={HERO_VIDEO}
             autoPlay
             muted
             loop
@@ -56,16 +55,16 @@ export function Hero() {
         className="relative z-10 container mx-auto px-4 text-center"
       >
         <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ y: 10 }}
+          animate={{ y: 0 }}
           transition={{ delay: 0.1 }}
           className="text-primary tracking-[0.3em] uppercase text-xs sm:text-sm mb-4"
         >
           {t("hero.subtitle")}
         </motion.p>
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ y: 20 }}
+          animate={{ y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
           className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-gradient-gold leading-[1.15] pb-4 pt-2 mb-2"
         >
@@ -80,16 +79,16 @@ export function Hero() {
           <span className="diamond" />
         </motion.div>
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ y: 20 }}
+          animate={{ y: 0 }}
           transition={{ delay: 0.55 }}
           className="text-base sm:text-lg md:text-xl text-foreground/90 max-w-2xl mx-auto mb-10"
         >
           {t("hero.tagline")}
         </motion.p>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ y: 20 }}
+          animate={{ y: 0 }}
           transition={{ delay: 0.7 }}
           className="flex flex-col sm:flex-row gap-3 justify-center mb-16"
         >

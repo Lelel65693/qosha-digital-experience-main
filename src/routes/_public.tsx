@@ -9,8 +9,10 @@ import { useSiteSettings, siteSettingsQueryOptions } from "@/lib/useSiteSettings
 import { useTranslation } from "react-i18next";
 
 export const Route = createFileRoute("/_public")({
-  loader: ({ context }) =>
-    (context as any).queryClient?.prefetchQuery(siteSettingsQueryOptions).catch(() => {}),
+  loader: ({ context }) => {
+    // Fire-and-forget: don't block page rendering on site settings
+    void (context as any).queryClient?.prefetchQuery(siteSettingsQueryOptions).catch(() => {});
+  },
   component: PublicLayout,
 });
 
