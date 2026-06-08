@@ -3,12 +3,14 @@ import { Suspense } from "react";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Features } from "@/components/sections/Features";
-import { MenuSection } from "@/components/sections/MenuSection";
+import { MenuSection, menuQueryOptions } from "@/components/sections/MenuSection";
 import { Reviews } from "@/components/sections/Reviews";
 import { Gallery } from "@/components/sections/Gallery";
 import { Contact } from "@/components/sections/Contact";
 
 export const Route = createFileRoute("/_public/")({
+  loader: ({ context }) =>
+    (context as any).queryClient?.prefetchQuery(menuQueryOptions).catch(() => {}),
   head: () => ({
     meta: [
       { title: "Qoşa Qala — Mərdəkan, Bakı | Restoran" },
