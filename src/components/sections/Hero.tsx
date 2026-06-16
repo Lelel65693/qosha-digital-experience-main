@@ -2,17 +2,12 @@ import { Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Star, Clock, Music } from "lucide-react";
-import { useRef, useState } from "react";
-import heroImg from "@/assets/hero-restaurant.jpg";
-import { getVideoSrc } from "@/lib/image-src";
-
-const HERO_VIDEO =
-  "https://monyo.az/v4/uploads-video/pv_2384d6a4d34_profile.mp4?x=1683810091";
+import { useRef } from "react";
+import { VideoBackground } from "@/components/VideoBackground";
 
 export function Hero() {
   const { t } = useTranslation();
   const ref = useRef<HTMLElement>(null);
-  const [videoOk, setVideoOk] = useState(true);
   const { scrollY } = useScroll();
   const bgY = useTransform(scrollY, [0, 600], [0, 140]);
   const contentY = useTransform(scrollY, [0, 600], [0, -40]);
@@ -22,29 +17,7 @@ export function Hero() {
     <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Parallax background: video with image fallback */}
       <motion.div style={{ y: bgY }} className="absolute inset-0 -top-10 -bottom-10">
-        {videoOk ? (
-          <video
-            src={getVideoSrc(HERO_VIDEO)}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={heroImg}
-            onError={() => setVideoOk(false)}
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <img
-            src={heroImg}
-            alt="Qoşa Qala interior"
-            className="w-full h-full object-cover animate-kenburns"
-            width={1920}
-            height={1080}
-          />
-        )}
-        <div className="absolute inset-0 bg-background/45" />
-        <div className="absolute inset-0 bg-gradient-dark" />
+        <VideoBackground position="absolute" preload="auto" overlayOpacityClass="bg-background/25" />
       </motion.div>
 
       {/* Floating gold orbs */}

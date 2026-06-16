@@ -361,9 +361,9 @@ function QrMenuPage() {
 
                           {/* Quick indicators */}
                           <div className="flex items-center gap-1">
-                            {item.spicy_level > 0 && (
+                            {(item.spicy_level ?? 0) > 0 && (
                               <span className="flex text-rose-500 text-[10px]">
-                                {Array.from({ length: item.spicy_level }).map((_, k) => "🌶")}
+                                {Array.from({ length: item.spicy_level ?? 0 }).map((_, k) => "🌶")}
                               </span>
                             )}
                             {item.weight_grams && (

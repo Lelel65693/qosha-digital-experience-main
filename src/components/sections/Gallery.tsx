@@ -7,13 +7,14 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { getGallery } from "@/lib/restaurant.functions";
 import { useMenuSync } from "@/hooks/use-menu-sync";
 import { getImageSrc, getVideoSrc } from "@/lib/image-src";
+import { VideoBackground } from "@/components/VideoBackground";
 
 export const galleryQueryOptions = queryOptions({
   queryKey: ["gallery"],
   queryFn: () => getGallery(),
 });
 
-export function Gallery({ limit }: { limit?: number } = {}) {
+export function Gallery({ limit, hideVideoBackground = false }: { limit?: number; hideVideoBackground?: boolean } = {}) {
   const { t, i18n } = useTranslation();
   useMenuSync();
   const { data: all } = useSuspenseQuery(galleryQueryOptions);
@@ -26,8 +27,11 @@ export function Gallery({ limit }: { limit?: number } = {}) {
   const lang = i18n.language as "az" | "ru" | "en";
 
   return (
-    <section className="py-20 sm:py-28">
-      <div className="container mx-auto px-4">
+    <section className="py-20 sm:py-28 relative overflow-hidden">
+      {!hideVideoBackground && (
+        <VideoBackground position="absolute" preload="auto" overlayOpacityClass="bg-background/50" />
+      )}
+      <div className="container mx-auto px-4 relative z-10">
         <SectionHeading title={t("gallery.title")} subtitle={t("gallery.subtitle")} />
         {!limit && categories.length > 1 && (
           <div className="flex flex-wrap gap-2 justify-center mb-8">

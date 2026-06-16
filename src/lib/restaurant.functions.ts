@@ -27,15 +27,7 @@ async function audit(
   } catch { /* never block on audit */ }
 }
 
-async function incrementMenuVersion() {
-  try {
-    const { data } = await supabaseAdmin.from("qr_settings").select("menu_version").eq("id", 1).maybeSingle();
-    const nextVersion = (data?.menu_version ?? 0) + 1;
-    await supabaseAdmin.from("qr_settings").update({ menu_version: nextVersion, updated_at: new Date().toISOString() }).eq("id", 1);
-  } catch (err) {
-    console.error("Failed to increment menu version:", err);
-  }
-}
+
 
 // ============ PUBLIC READS ============
 
@@ -68,52 +60,7 @@ export const getGallery = createServerFn({ method: "GET" }).handler(async () => 
   return data ?? [];
 });
 
-const qrSettingsSchema = z.object({
-  fg_color: z.string(),
-  bg_color: z.string(),
-  logo_url: z.string().nullable().optional(),
-  logo_active: z.boolean(),
-  error_correction: z.enum(["L", "M", "Q", "H"]),
-  size: z.number().int().min(200).max(600),
-});
 
-export const getQrSettings = createServerFn({ method: "GET" })
-  .handler(async () => {
-    const { data, error } = await supabaseAdmin
-      .from("qr_settings").select("*").eq("id", 1).maybeSingle();
-    if (error) throw new Error(error.message);
-    return data || { 
-      id: 1,
-      fg_color: "#C9A84C", 
-      bg_color: "#111111", 
-      logo_url: "", 
-      logo_active: false, 
-      error_correction: "M" as const, 
-      size: 400, 
-      menu_version: 1 
-    };
-  });
-
-export const updateQrSettings = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
-  .inputValidator((input: unknown) => qrSettingsSchema.parse(input))
-  .handler(async ({ data, context }) => {
-    await assertAdmin(context.userId);
-    const { error } = await supabaseAdmin
-      .from("qr_settings")
-      .update({
-        fg_color: data.fg_color,
-        bg_color: data.bg_color,
-        logo_url: data.logo_url || null,
-        logo_active: data.logo_active,
-        error_correction: data.error_correction,
-        size: data.size,
-        updated_at: new Date().toISOString()
-      })
-      .eq("id", 1);
-    if (error) throw new Error(error.message);
-    return { ok: true };
-  });
 
 export const getTableByNumber = createServerFn({ method: "GET" })
   .inputValidator((input: { tableNumber: number }) => input)
@@ -343,7 +290,6 @@ export const upsertMenuItem = createServerFn({ method: "POST" })
       : await supabaseAdmin.from("menu_items").insert(payload);
     if (error) throw new Error(error.message);
     await audit(context.userId, data.id ? "update" : "create", "menu_items", data.id ?? null, { name: data.name_az });
-    await incrementMenuVersion();
     return { ok: true };
   });
 
@@ -355,7 +301,6 @@ export const deleteMenuItem = createServerFn({ method: "POST" })
     const { error } = await supabaseAdmin.from("menu_items").delete().eq("id", data.id);
     if (error) throw new Error(error.message);
     await audit(context.userId, "delete", "menu_items", data.id);
-    await incrementMenuVersion();
     return { ok: true };
   });
 
@@ -369,7 +314,6 @@ export const toggleMenuItemActive = createServerFn({ method: "POST" })
       .from("menu_items").update({ is_active: data.is_active }).eq("id", data.id);
     if (error) throw new Error(error.message);
     await audit(context.userId, "toggle", "menu_items", data.id, { is_active: data.is_active });
-    await incrementMenuVersion();
     return { ok: true };
   });
 
@@ -393,7 +337,6 @@ export const duplicateMenuItem = createServerFn({ method: "POST" })
       .from("menu_items").insert(copy).select("id").maybeSingle();
     if (e2) throw new Error(e2.message);
     await audit(context.userId, "duplicate", "menu_items", inserted?.id ?? null, { from: data.id });
-    await incrementMenuVersion();
     return { ok: true, id: inserted?.id };
   });
 
@@ -420,7 +363,6 @@ export const bulkUpdateMenuItems = createServerFn({ method: "POST" })
     else return { ok: false };
     if (res?.error) throw new Error(res.error.message);
     await audit(context.userId, "bulk_update", "menu_items", null, { action: data.action, count: data.ids.length });
-    await incrementMenuVersion();
     return { ok: true, affected: data.ids.length };
   });
 
