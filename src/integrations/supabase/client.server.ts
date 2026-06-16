@@ -5,31 +5,49 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
-function createSupabaseAdminClient() {
-  const SUPABASE_URL = process.env.SUPABASE_URL || 
-                       process.env.VITE_SUPABASE_URL || 
-                       ((import.meta as any).env ? (import.meta as any).env.VITE_SUPABASE_URL : "");
-  let SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+function getEnv(key: string): string {
+  // Vercel / Node: process.env is the primary source
+  // Vite SSR: import.meta.env is the fallback (VITE_ prefixed vars)
+  return (
+    (typeof process !== 'undefined' && process.env?.[key]) ||
+    (typeof (import.meta as any).env !== 'undefined' && (import.meta as any).env?.[key]) ||
+    ''
+  );
+}
 
-  if (!SUPABASE_SERVICE_ROLE_KEY) {
-    SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_PUBLISHABLE_KEY || 
-                                process.env.VITE_SUPABASE_PUBLISHABLE_KEY || 
-                                ((import.meta as any).env ? (import.meta as any).env.VITE_SUPABASE_PUBLISHABLE_KEY : "");
-    if (SUPABASE_SERVICE_ROLE_KEY) {
-      console.warn(
-        "[Supabase] SUPABASE_SERVICE_ROLE_KEY is missing. Falling back to PUBLISHABLE_KEY for local development. Admin/audit write operations may fail."
-      );
-    }
-  }
+function createSupabaseAdminClient() {
+  const SUPABASE_URL =
+    getEnv('SUPABASE_URL') ||
+    getEnv('VITE_SUPABASE_URL');
+
+  const SUPABASE_SERVICE_ROLE_KEY =
+    getEnv('SUPABASE_SERVICE_ROLE_KEY') ||
+    // Fallback to anon/publishable key for local dev (read-only public ops work)
+    getEnv('SUPABASE_PUBLISHABLE_KEY') ||
+    getEnv('VITE_SUPABASE_PUBLISHABLE_KEY');
 
   if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
     const missing = [
       ...(!SUPABASE_URL ? ['SUPABASE_URL'] : []),
       ...(!SUPABASE_SERVICE_ROLE_KEY ? ['SUPABASE_SERVICE_ROLE_KEY'] : []),
     ];
-    const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Connect Supabase in Lovable Cloud.`;
-    console.error(`[Supabase] ${message}`);
-    throw new Error(message);
+    // Log but do NOT throw at module init time — throw at call time instead
+    // so the SSR page itself can still render (with empty data sections)
+    console.error(
+      `[Supabase] Missing environment variable(s): ${missing.join(', ')}. ` +
+      'Add them to your Vercel project settings → Environment Variables.'
+    );
+    throw new Error(
+      `Missing Supabase environment variable(s): ${missing.join(', ')}. ` +
+      'Go to Vercel Dashboard → Project → Settings → Environment Variables and add SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.'
+    );
+  }
+
+  if (SUPABASE_SERVICE_ROLE_KEY === getEnv('VITE_SUPABASE_PUBLISHABLE_KEY') ||
+      SUPABASE_SERVICE_ROLE_KEY === getEnv('SUPABASE_PUBLISHABLE_KEY')) {
+    console.warn(
+      '[Supabase] Using anon key instead of service_role key. Admin write operations will fail due to RLS.'
+    );
   }
 
   return createClient<Database>(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
@@ -52,3 +70,4 @@ export const supabaseAdmin = new Proxy({} as ReturnType<typeof createSupabaseAdm
     return Reflect.get(_supabaseAdmin, prop, receiver);
   },
 });
+
