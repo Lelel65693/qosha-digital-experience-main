@@ -28,12 +28,16 @@ export const requireSupabaseAuth = createMiddleware({ type: "function" })
     }
 
     const SUPABASE_URL =
-      process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL ?? "";
+      process.env.SUPABASE_URL ?? 
+      process.env.VITE_SUPABASE_URL ?? 
+      ((import.meta as any).env ? (import.meta as any).env.VITE_SUPABASE_URL : "") ?? 
+      "";
     const SUPABASE_ANON_KEY =
       process.env.SUPABASE_PUBLISHABLE_KEY ??
       process.env.VITE_SUPABASE_PUBLISHABLE_KEY ??
       process.env.SUPABASE_ANON_KEY ??
       process.env.VITE_SUPABASE_ANON_KEY ??
+      ((import.meta as any).env ? (import.meta as any).env.VITE_SUPABASE_PUBLISHABLE_KEY : "") ??
       "";
 
     if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {

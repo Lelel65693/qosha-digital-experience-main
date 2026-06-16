@@ -6,11 +6,15 @@ import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
 function createSupabaseAdminClient() {
-  const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+  const SUPABASE_URL = process.env.SUPABASE_URL || 
+                       process.env.VITE_SUPABASE_URL || 
+                       ((import.meta as any).env ? (import.meta as any).env.VITE_SUPABASE_URL : "");
   let SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!SUPABASE_SERVICE_ROLE_KEY) {
-    SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_PUBLISHABLE_KEY || process.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+    SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_PUBLISHABLE_KEY || 
+                                process.env.VITE_SUPABASE_PUBLISHABLE_KEY || 
+                                ((import.meta as any).env ? (import.meta as any).env.VITE_SUPABASE_PUBLISHABLE_KEY : "");
     if (SUPABASE_SERVICE_ROLE_KEY) {
       console.warn(
         "[Supabase] SUPABASE_SERVICE_ROLE_KEY is missing. Falling back to PUBLISHABLE_KEY for local development. Admin/audit write operations may fail."
