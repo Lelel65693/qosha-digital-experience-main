@@ -16,6 +16,7 @@ import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as PublicIndexRouteImport } from './routes/_public.index'
 import { Route as AdminVariantsRouteImport } from './routes/admin.variants'
 import { Route as AdminTemplatesRouteImport } from './routes/admin.templates'
+import { Route as AdminTablesRouteImport } from './routes/admin.tables'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminReviewsRouteImport } from './routes/admin.reviews'
 import { Route as AdminReservationsRouteImport } from './routes/admin.reservations'
@@ -64,6 +65,11 @@ const AdminVariantsRoute = AdminVariantsRouteImport.update({
 const AdminTemplatesRoute = AdminTemplatesRouteImport.update({
   id: '/templates',
   path: '/templates',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTablesRoute = AdminTablesRouteImport.update({
+  id: '/tables',
+  path: '/tables',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminSettingsRoute = AdminSettingsRouteImport.update({
@@ -157,6 +163,7 @@ export interface FileRoutesByFullPath {
   '/admin/reservations': typeof AdminReservationsRoute
   '/admin/reviews': typeof AdminReviewsRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/tables': typeof AdminTablesRoute
   '/admin/templates': typeof AdminTemplatesRoute
   '/admin/variants': typeof AdminVariantsRoute
   '/admin/': typeof AdminIndexRoute
@@ -178,6 +185,7 @@ export interface FileRoutesByTo {
   '/admin/reservations': typeof AdminReservationsRoute
   '/admin/reviews': typeof AdminReviewsRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/tables': typeof AdminTablesRoute
   '/admin/templates': typeof AdminTemplatesRoute
   '/admin/variants': typeof AdminVariantsRoute
   '/': typeof PublicIndexRoute
@@ -203,6 +211,7 @@ export interface FileRoutesById {
   '/admin/reservations': typeof AdminReservationsRoute
   '/admin/reviews': typeof AdminReviewsRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/tables': typeof AdminTablesRoute
   '/admin/templates': typeof AdminTemplatesRoute
   '/admin/variants': typeof AdminVariantsRoute
   '/_public/': typeof PublicIndexRoute
@@ -229,6 +238,7 @@ export interface FileRouteTypes {
     | '/admin/reservations'
     | '/admin/reviews'
     | '/admin/settings'
+    | '/admin/tables'
     | '/admin/templates'
     | '/admin/variants'
     | '/admin/'
@@ -250,6 +260,7 @@ export interface FileRouteTypes {
     | '/admin/reservations'
     | '/admin/reviews'
     | '/admin/settings'
+    | '/admin/tables'
     | '/admin/templates'
     | '/admin/variants'
     | '/'
@@ -274,6 +285,7 @@ export interface FileRouteTypes {
     | '/admin/reservations'
     | '/admin/reviews'
     | '/admin/settings'
+    | '/admin/tables'
     | '/admin/templates'
     | '/admin/variants'
     | '/_public/'
@@ -343,6 +355,13 @@ declare module '@tanstack/react-router' {
       path: '/templates'
       fullPath: '/admin/templates'
       preLoaderRoute: typeof AdminTemplatesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/tables': {
+      id: '/admin/tables'
+      path: '/tables'
+      fullPath: '/admin/tables'
+      preLoaderRoute: typeof AdminTablesRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/settings': {
@@ -480,6 +499,7 @@ interface AdminRouteChildren {
   AdminReservationsRoute: typeof AdminReservationsRoute
   AdminReviewsRoute: typeof AdminReviewsRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminTablesRoute: typeof AdminTablesRoute
   AdminTemplatesRoute: typeof AdminTemplatesRoute
   AdminVariantsRoute: typeof AdminVariantsRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -493,6 +513,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminReservationsRoute: AdminReservationsRoute,
   AdminReviewsRoute: AdminReviewsRoute,
   AdminSettingsRoute: AdminSettingsRoute,
+  AdminTablesRoute: AdminTablesRoute,
   AdminTemplatesRoute: AdminTemplatesRoute,
   AdminVariantsRoute: AdminVariantsRoute,
   AdminIndexRoute: AdminIndexRoute,

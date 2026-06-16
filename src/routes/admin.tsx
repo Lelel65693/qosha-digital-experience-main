@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { checkIsAdmin } from "@/lib/restaurant.functions";
 import { useState } from "react";
 import {
-  LayoutDashboard, UtensilsCrossed, Star, QrCode, CalendarDays, Image as ImageIcon, LogOut,
+  LayoutDashboard, UtensilsCrossed, Star, CalendarDays, Image as ImageIcon, LogOut,
   FolderTree, Settings, SlidersHorizontal, ScrollText, ChevronLeft, ChevronRight, Menu,
 } from "lucide-react";
 
@@ -35,7 +35,6 @@ const NAV = [
   { to: "/admin/menu", label: "Menyu", icon: UtensilsCrossed },
   { to: "/admin/categories", label: "Kateqoriyalar", icon: FolderTree },
   { to: "/admin/variants", label: "Variantlar / Əlavələr", icon: SlidersHorizontal },
-  { to: "/admin/tables", label: "QR Kod", icon: QrCode },
   { to: "/admin/reservations", label: "Rezervasiyalar", icon: CalendarDays },
   { to: "/admin/reviews", label: "Rəylər", icon: Star },
   { to: "/admin/gallery", label: "Qalereya", icon: ImageIcon },

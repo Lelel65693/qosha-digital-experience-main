@@ -1,5 +1,6 @@
 import { createMiddleware } from "@tanstack/react-start";
 import { createClient } from "@supabase/supabase-js";
+import { getRequestHeaders } from "@tanstack/react-start/server";
 
 /**
  * TanStack Start middleware that gets the client-side Supabase token,
@@ -17,8 +18,9 @@ export const requireSupabaseAuth = createMiddleware({ type: "function" })
       },
     });
   })
-  .server(async ({ next, request }) => {
-    const authHeader = request?.headers?.get("Authorization") ?? "";
+  .server(async ({ next }) => {
+    const headers = getRequestHeaders() as any;
+    const authHeader = headers["authorization"] ?? "";
     const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : authHeader;
 
     if (!token) {

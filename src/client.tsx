@@ -4,4 +4,5 @@ import { createRouter } from "./router";
 
 const router = createRouter();
 
+// @ts-ignore
 hydrateRoot(document, <StartClient router={router} />);

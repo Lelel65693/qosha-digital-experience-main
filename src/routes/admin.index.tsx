@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery, queryOptions } from "@tanstack/react-query";
 import { getAdminStats } from "@/lib/restaurant.functions";
-import { UtensilsCrossed, Star, QrCode, CalendarDays, TrendingUp, Clock, Plus } from "lucide-react";
+import { UtensilsCrossed, Star, CalendarDays, TrendingUp, Clock, Plus } from "lucide-react";
 
 const statsQuery = queryOptions({ queryKey: ["admin-stats"], queryFn: () => getAdminStats() });
 
@@ -18,7 +18,6 @@ function Dashboard() {
     { label: "Bu ay rezervasiya", value: data.monthReservations, icon: TrendingUp, color: "text-emerald-500", to: "/admin/reservations" },
     { label: "Gözləyən rəylər", value: data.pendingReviews, icon: Clock, color: "text-amber-500", to: "/admin/reviews", highlight: data.pendingReviews > 0 },
     { label: "Aktiv yeməklər", value: data.menuCount, icon: UtensilsCrossed, color: "text-primary", to: "/admin/menu" },
-    { label: "QR Kod (aktiv)", value: 1, icon: QrCode, color: "text-blue-500", to: "/admin/tables" },
   ];
 
   return (
@@ -29,7 +28,7 @@ function Dashboard() {
       </div>
 
       {/* Stat cards */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {cards.map((c) => (
           <Link key={c.label} to={c.to as any}
             className={`bg-card border rounded-xl p-5 hover:border-primary/40 transition ${c.highlight ? "border-amber-500/40 bg-amber-500/5" : "border-border/40"}`}>
@@ -44,7 +43,6 @@ function Dashboard() {
       <div className="flex flex-wrap gap-2">
         <QuickBtn to="/admin/menu" icon={Plus} label="Yeni Məhsul" />
         <QuickBtn to="/admin/reviews" icon={Star} label="Rəyləri Bax" />
-        <QuickBtn to="/admin/tables" icon={QrCode} label="QR Kod İdarəet" />
       </div>
 
       {/* Two columns */}
