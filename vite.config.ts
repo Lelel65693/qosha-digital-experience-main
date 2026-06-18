@@ -16,8 +16,9 @@ export default defineConfig({
   },
   nitro: {
     preset: getNitroPreset(),
+    // @ts-expect-error - Lovable's Vite config has a narrow Nitro type definition, but Nitro accepts 'externals' at runtime.
     externals: {
-      inline: ["tslib"],
+      inline: [/tslib/, /@supabase\//],
     },
   },
 });

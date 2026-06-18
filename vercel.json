@@ -1,5 +1,5 @@
 {
-  "buildCommand": "vite build",
+  "buildCommand": "vite build && node scripts/postbuild-vercel.mjs",
   "outputDirectory": ".vercel/output",
   "installCommand": "npm install",
   "framework": null
