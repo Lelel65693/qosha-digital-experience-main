@@ -16,5 +16,8 @@ export default defineConfig({
   },
   nitro: {
     preset: getNitroPreset(),
+    externals: {
+      inline: ["tslib"],
+    },
   },
 });
